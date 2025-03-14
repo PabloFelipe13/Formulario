@@ -11,6 +11,8 @@
             if (tipo === 'adicionar') {
                 document.getElementById('formulario-container').style.display = 'block';
                 document.getElementById('botoes-container').style.display = 'none';
+            } else if (tipo === 'editar') {
+                window.location.href = ""; // Adicione o link correto para a página de edição
             } else if (tipo === 'excluir') {
                 window.location.href = "https://pablofelipe13.github.io/Formulario/excluiaula.html";
             }
@@ -25,6 +27,7 @@
         <!-- Botões de escolha -->
         <div id="botoes-container" class="text-center">
             <button class="btn btn-success m-2" onclick="escolherAcao('adicionar')">Adicionar Aula</button>
+            <button class="btn btn-warning m-2" onclick="escolherAcao('editar')">Editar Aula</button>
             <button class="btn btn-danger m-2" onclick="escolherAcao('excluir')">Excluir Aula</button>
         </div>
 
