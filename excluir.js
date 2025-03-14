@@ -27,13 +27,18 @@ async function carregarAulas() {
 }
 
 async function excluirAula(id) {
+    if (!id) {
+        alert("ID inválido para exclusão!");
+        return;
+    }
     if (confirm("Tem certeza que deseja excluir esta aula?")) {
         try {
             await deleteDoc(doc(db, "aulas", id));
             alert("Aula excluída com sucesso!");
-            carregarAulas(); // Recarregar a lista após exclusão
+            carregarAulas(); // Atualiza a tabela após a exclusão
         } catch (error) {
             console.error("Erro ao excluir aula:", error);
+            alert("Erro ao excluir aula. Verifique o console para mais detalhes.");
         }
     }
 }
