@@ -3,52 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar Aula</title>
+    <title>Gerenciar Aulas</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
-    <script type="module" src="formulario.js"></script>
+    <script>
+        function escolherAcao(tipo) {
+            if (tipo === 'adicionar') {
+                document.getElementById('formulario-container').style.display = 'block';
+                document.getElementById('botoes-container').style.display = 'none';
+            } else if (tipo === 'excluir') {
+                window.location.href = "https://pablofelipe13.github.io/Formulario/excluiaula.html";
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="container mt-5">
-        <h2 class="text-center">Adicionar Aula</h2>
-        <form id="form-aula">
-            <div class="mb-3">
-                <label for="materia" class="form-label">Matéria</label>
-                <select class="form-select" id="materia" required>
-                    <option value="">Selecione a matéria</option>
-                    <option value="anatomia">Anatomia</option>
-                    <option value="fisiologia">Fisiologia</option>
-                    <option value="bioquimica">Bioquímica</option>
-                    <option value="cinesiologia">Cinesiologia</option>
-                    <option value="bases">Bases</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="data-aula" class="form-label">Data da Aula</label>
-                <input type="date" class="form-control" id="data-aula" required>
-            </div>
-            <div class="mb-3">
-                <label for="conteudo" class="form-label">Conteúdo Abordado</label>
-                <input type="text" class="form-control" id="conteudo" required>
-            </div>
-            <div class="mb-3">
-                <label for="nome-arquivo" class="form-label">Nome do Arquivo</label>
-                <input type="text" class="form-control" id="nome-arquivo">
-            </div>
-            <div class="mb-3">
-                <label for="link-arquivo" class="form-label">Link do Arquivo</label>
-                <input type="url" class="form-control" id="link-arquivo">
-            </div>
-            <div class="mb-3">
-                <label for="nome-gravacao" class="form-label">Nome da Gravação</label>
-                <input type="text" class="form-control" id="nome-gravacao">
-            </div>
-            <div class="mb-3">
-                <label for="link-gravacao" class="form-label">Link da Gravação</label>
-                <input type="url" class="form-control" id="link-gravacao">
-            </div>
-            <button type="submit" class="btn btn-primary w-100">Adicionar Aula</button>
-        </form>
+        <h2 class="text-center">Gerenciar Aulas</h2>
+        
+        <!-- Botões de escolha -->
+        <div id="botoes-container" class="text-center">
+            <button class="btn btn-success m-2" onclick="escolherAcao('adicionar')">Adicionar Aula</button>
+            <button class="btn btn-danger m-2" onclick="escolherAcao('excluir')">Excluir Aula</button>
+        </div>
+
+        <!-- Formulário oculto inicialmente -->
+        <div id="formulario-container" style="display: none;">
+            <h2 class="text-center">Adicionar Aula</h2>
+            <form id="form-aula">
+                <div class="mb-3">
+                    <label for="materia" class="form-label">Matéria</label>
+                    <select class="form-select" id="materia" required>
+                        <option value="">Selecione a matéria</option>
+                        <option value="anatomia">Anatomia</option>
+                        <option value="fisiologia">Fisiologia</option>
+                        <option value="bioquimica">Bioquímica</option>
+                        <option value="cinesiologia">Cinesiologia</option>
+                        <option value="bases">Bases</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="data-aula" class="form-label">Data da Aula</label>
+                    <input type="date" class="form-control" id="data-aula" required>
+                </div>
+                <div class="mb-3">
+                    <label for="conteudo" class="form-label">Conteúdo Abordado</label>
+                    <input type="text" class="form-control" id="conteudo" required>
+                </div>
+                <div class="mb-3">
+                    <label for="nome-arquivo" class="form-label">Nome do Arquivo</label>
+                    <input type="text" class="form-control" id="nome-arquivo">
+                </div>
+                <div class="mb-3">
+                    <label for="link-arquivo" class="form-label">Link do Arquivo</label>
+                    <input type="url" class="form-control" id="link-arquivo">
+                </div>
+                <div class="mb-3">
+                    <label for="nome-gravacao" class="form-label">Nome da Gravação</label>
+                    <input type="text" class="form-control" id="nome-gravacao">
+                </div>
+                <div class="mb-3">
+                    <label for="link-gravacao" class="form-label">Link da Gravação</label>
+                    <input type="url" class="form-control" id="link-gravacao">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Adicionar Aula</button>
+            </form>
+        </div>
     </div>
 </body>
 </html>
