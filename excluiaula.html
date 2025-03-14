@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excluir Aula</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="excluir.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Excluir Aula</h2>
+        <div class="mb-3">
+            <label for="materia" class="form-label">Matéria</label>
+            <select class="form-select" id="materia" required>
+                <option value="">Selecione a matéria</option>
+                <option value="anatomia">Anatomia</option>
+                <option value="fisiologia">Fisiologia</option>
+                <option value="bioquimica">Bioquímica</option>
+                <option value="cinesiologia">Cinesiologia</option>
+                <option value="bases">Bases</option>
+            </select>
+        </div>
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Conteúdo</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody id="tabela-corpo">
+                <!-- As aulas serão carregadas aqui -->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
