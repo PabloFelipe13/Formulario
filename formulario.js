@@ -30,7 +30,7 @@ document.getElementById("form-aula").addEventListener("submit", async (e) => {
     }
 
     // Se a data não for preenchida, usa a data do dia no formato correto
-    const dataAula = dataInput ? dataInput.split('-').reverse().join('-') : formatarData();
+    let dataAula = dataInput ? dataInput.split('-').reverse().join('-') : formatarData();
 
     const conteudo = document.getElementById("conteudo").value;
     const nomeArquivo = document.getElementById("nome-arquivo").value;
