@@ -17,21 +17,21 @@ const db = getFirestore(app);
 document.getElementById("form-aula").addEventListener("submit", async (e) => {
     e.preventDefault();
 
-  const dataInput = document.getElementById("data-aula").value;
-
-function formatarData(data) {
-    const hoje = new Date();
-    const dia = String(hoje.getDate()).padStart(2, '0'); // Garante dois dígitos
-    const mes = String(hoje.getMonth() + 1).padStart(2, '0'); // Janeiro é 0, então soma 1
-    const ano = hoje.getFullYear();
-    return `${dia}-${mes}-${ano}`;
-}
-
-const dataAula = dataInput ? dataInput.split('-').reverse().join('-') : formatarData();
-
-    
     const materia = document.getElementById("materia").value;
-    const dataAula = document.getElementById("data-aula").value;
+    let dataInput = document.getElementById("data-aula").value;
+    
+    // Função para formatar a data como dd-mm-yyyy
+    function formatarData() {
+        const hoje = new Date();
+        const dia = String(hoje.getDate()).padStart(2, '0'); 
+        const mes = String(hoje.getMonth() + 1).padStart(2, '0'); 
+        const ano = hoje.getFullYear();
+        return `${dia}-${mes}-${ano}`;
+    }
+
+    // Se a data não for preenchida, usa a data do dia no formato correto
+    const dataAula = dataInput ? dataInput.split('-').reverse().join('-') : formatarData();
+
     const conteudo = document.getElementById("conteudo").value;
     const nomeArquivo = document.getElementById("nome-arquivo").value;
     const linkArquivo = document.getElementById("link-arquivo").value;
