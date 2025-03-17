@@ -14,33 +14,25 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             const querySnapshot = await getDocs(collection(db, materia)); // Busca na coleção correta
             querySnapshot.forEach((docSnapshot) => {
-                const { dia, conteudo, link } = docSnapshot.data();
+                const aula = docSnapshot.data();
                 const docId = docSnapshot.id;
-                
-                const dataFormatada = dia ? formatarDataParaExibicao(dia) : "Sem data";
-                
+
+                // Acessa corretamente o campo dataAula
+                const dataAula = aula.dataAula || "Sem data";
+
                 const linha = `
                     <tr>
-                        <td>${dataFormatada}</td>
-                        <td>${conteudo || "Sem conteúdo"}</td>
-                        <td>${link ? `<a href="${link}" target="_blank">Ver Arquivos</a>` : "Sem link"}</td>
+                        <td>${dataAula}</td>
+                        <td>${aula.conteudo || "Sem conteúdo"}</td>
+                        <td>${aula.link ? `<a href="${aula.link}" target="_blank">Ver Arquivos</a>` : "Sem link"}</td>
                         <td><button class="btn btn-danger btn-sm" onclick="excluirAula('${materia}', '${docId}')">Excluir</button></td>
                     </tr>`;
-                
+
                 tabelaCorpo.innerHTML += linha;
             });
         } catch (error) {
             console.error(`Erro ao carregar aulas de ${materia}:`, error);
         }
-    }
-
-    // Função para garantir que a data permaneça no formato "dd-mm-yyyy"
-    function formatarDataParaExibicao(data) {
-        const partes = data.split("-"); // Divide a string pelo "-"
-        if (partes.length === 3) {
-            return `${partes[0]}-${partes[1]}-${partes[2]}`; // Retorna no formato dd-mm-yyyy
-        }
-        return data; // Se não for no formato esperado, mantém o valor original
     }
 
     // Função para excluir uma aula
