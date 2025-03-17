@@ -17,11 +17,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 const { dia, conteudo, link } = docSnapshot.data();
                 const docId = docSnapshot.id;
                 
+                const dataFormatada = dia ? formatarDataParaExibicao(dia) : "Sem data";
+                
                 const linha = `
                     <tr>
-                        <td>${dia}</td>
-                        <td>${conteudo}</td>
-                        <td><a href="${link}" target="_blank">Ver Arquivos</a></td>
+                        <td>${dataFormatada}</td>
+                        <td>${conteudo || "Sem conteúdo"}</td>
+                        <td>${link ? `<a href="${link}" target="_blank">Ver Arquivos</a>` : "Sem link"}</td>
                         <td><button class="btn btn-danger btn-sm" onclick="excluirAula('${materia}', '${docId}')">Excluir</button></td>
                     </tr>`;
                 
@@ -30,6 +32,15 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (error) {
             console.error(`Erro ao carregar aulas de ${materia}:`, error);
         }
+    }
+
+    // Função para garantir que a data permaneça no formato "dd-mm-yyyy"
+    function formatarDataParaExibicao(data) {
+        const partes = data.split("-"); // Divide a string pelo "-"
+        if (partes.length === 3) {
+            return `${partes[0]}-${partes[1]}-${partes[2]}`; // Retorna no formato dd-mm-yyyy
+        }
+        return data; // Se não for no formato esperado, mantém o valor original
     }
 
     // Função para excluir uma aula
